@@ -1,4 +1,4 @@
-package action_tokens_domain
+package access_token_domain
 
 import (
 	"testing"
