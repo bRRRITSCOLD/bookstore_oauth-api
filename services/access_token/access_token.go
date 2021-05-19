@@ -1,4 +1,4 @@
-package access_token_domain
+package access_token_service
 
 import (
 	access_token_domain "bookstore_oauth-api/domains/access_token"

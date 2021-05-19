@@ -1,9 +1,9 @@
 package app
 
 import (
-	access_token_domain "bookstore_oauth-api/domains/access_token"
 	access_token_http_infrastructure "bookstore_oauth-api/infrastructure/http/access_token"
 	access_token_database_repository "bookstore_oauth-api/repositories/database/access_token"
+	access_token_service "bookstore_oauth-api/services/access_token"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,7 +14,7 @@ var (
 
 func StartApp() {
 	atRepository := access_token_database_repository.NewAccessTokenRepository()
-	atService := access_token_domain.NewService(atRepository)
+	atService := access_token_service.NewService(atRepository)
 	atHttpInfrastructureHandler := access_token_http_infrastructure.NewHandler(atService)
 
 	// ping

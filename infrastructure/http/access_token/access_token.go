@@ -1,11 +1,12 @@
 package access_token_http_infrastructure
 
 import (
-	access_token_domain "bookstore_oauth-api/domains/access_token"
 	"net/http"
 	"strings"
 
 	"github.com/gin-gonic/gin"
+
+	access_token_service "bookstore_oauth-api/services/access_token"
 )
 
 type AccessTokenHandler interface {
@@ -13,10 +14,10 @@ type AccessTokenHandler interface {
 }
 
 type accessTokenHandler struct {
-	accessTokenService access_token_domain.AccessTokenService
+	accessTokenService access_token_service.AccessTokenService
 }
 
-func NewHandler(accessTokenService access_token_domain.AccessTokenService) AccessTokenHandler {
+func NewHandler(accessTokenService access_token_service.AccessTokenService) AccessTokenHandler {
 	return &accessTokenHandler{
 		accessTokenService: accessTokenService,
 	}
