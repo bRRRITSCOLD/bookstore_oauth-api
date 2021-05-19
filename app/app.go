@@ -1,6 +1,7 @@
 package app
 
 import (
+	cassandra_client "bookstore_oauth-api/clients/cassandra"
 	access_token_http_infrastructure "bookstore_oauth-api/infrastructure/http/access_token"
 	access_token_database_repository "bookstore_oauth-api/repositories/database/access_token"
 	access_token_service "bookstore_oauth-api/services/access_token"
@@ -13,6 +14,12 @@ var (
 )
 
 func StartApp() {
+	cassandraClientSession, cassandraClientErr := cassandra_client.GetSession()
+	if cassandraClientErr != nil {
+		panic(cassandraClientErr)
+	}
+	cassandraClientSession.Close()
+
 	atRepository := access_token_database_repository.NewAccessTokenRepository()
 	atService := access_token_service.NewService(atRepository)
 	atHttpInfrastructureHandler := access_token_http_infrastructure.NewHandler(atService)
