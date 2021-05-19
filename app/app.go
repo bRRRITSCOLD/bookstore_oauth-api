@@ -25,7 +25,10 @@ func StartApp() {
 	atHttpInfrastructureHandler := access_token_http_infrastructure.NewHandler(atService)
 
 	// ping
-	router.GET("/oauth/access-token/:accessTokenId", atHttpInfrastructureHandler.GetByID)
+	// ping
+	router.POST("/oauth/access-token", atHttpInfrastructureHandler.CreateAccessToken)
+	router.GET("/oauth/access-token/:accessTokenId", atHttpInfrastructureHandler.GetAccessTokenByID)
+	// router.PUT("/oauth/access-token/:accessTokenId", atHttpInfrastructureHandler.GetAccessTokenByID)
 
 	if err := router.Run(":8080"); err != nil {
 		panic(err)

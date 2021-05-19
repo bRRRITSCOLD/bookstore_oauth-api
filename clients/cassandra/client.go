@@ -1,6 +1,12 @@
 package cassandra_client
 
-import "github.com/gocql/gocql"
+import (
+	"strings"
+
+	"github.com/gocql/gocql"
+	"github.com/scylladb/go-reflectx"
+	"github.com/scylladb/gocqlx/v2"
+)
 
 var (
 	cluster *gocql.ClusterConfig
@@ -12,6 +18,13 @@ func init() {
 	cluster.Consistency = gocql.Quorum
 }
 
-func GetSession() (*gocql.Session, error) {
-	return cluster.CreateSession()
+func GetSession() (gocqlx.Session, error) {
+	wrappedSession, err := gocqlx.WrapSession(cluster.CreateSession())
+	if err != nil {
+		return wrappedSession, err
+	}
+
+	wrappedSession.Mapper = reflectx.NewMapperFunc("cassandra", strings.ToLower)
+
+	return wrappedSession, nil
 }
