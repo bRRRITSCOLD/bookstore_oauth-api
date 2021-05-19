@@ -1,16 +1,41 @@
 package access_token_domain
 
-import "time"
+import (
+	errors_utils "bookstore_oauth-api/utils/errors"
+	"strings"
+	"time"
+)
 
 const (
 	EXPIRATION_TIME = 24
 )
 
 type AccessToken struct {
-	AccessToken string `json:"accessToken"`
-	UserID      int64  `json:"userId"`
-	ClientID    int64  `json:"clientId"`
-	Expires     int64  `json:"expires"`
+	AccessToken string `json:"accessToken" cassandra:"access_token"`
+	UserID      int64  `json:"userId" cassandra:"user_id"`
+	ClientID    int64  `json:"clientId" cassandra:"client_id"`
+	Expires     int64  `json:"expires" cassandra:"expires"`
+}
+
+func (at *AccessToken) ValidateAccessToken() *errors_utils.APIError {
+	accessTokenId := strings.TrimSpace(at.AccessToken)
+	if len(accessTokenId) == 0 {
+		return errors_utils.NewBadRequestAPIError("invalid access token id")
+	}
+
+	if at.UserID <= 0 {
+		return errors_utils.NewBadRequestAPIError("invalid user id")
+	}
+
+	if at.ClientID <= 0 {
+		return errors_utils.NewBadRequestAPIError("invalid client id")
+	}
+
+	if at.Expires <= 0 {
+		return errors_utils.NewBadRequestAPIError("invalid expiration time")
+	}
+
+	return nil
 }
 
 func GetNewAccessToken() AccessToken {
