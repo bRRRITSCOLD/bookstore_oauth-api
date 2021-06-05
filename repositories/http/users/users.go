@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	UsersApiBaseUrl                = "https://localhost:8080%s"
+	UsersApiBaseUrl                = "http://localhost:3000%s"
 	UsersApiUsersLoginPostEndpoint = "/users/login"
 )
 

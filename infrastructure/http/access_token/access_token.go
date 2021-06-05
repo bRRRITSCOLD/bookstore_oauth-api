@@ -40,14 +40,15 @@ func (atHandler accessTokenHandler) GetAccessTokenByID(c *gin.Context) {
 }
 
 func (atHandler accessTokenHandler) CreateAccessToken(c *gin.Context) {
-	var accessToken access_token_domain.AccessToken
-	if shouldBindJSONErr := c.ShouldBindJSON(&accessToken); shouldBindJSONErr != nil {
+	var accessTokenRequest access_token_domain.AccessTokenRequest
+	if shouldBindJSONErr := c.ShouldBindJSON(&accessTokenRequest); shouldBindJSONErr != nil {
 		apiError := errors_utils.NewBadRequestAPIError("invalid json body")
 		c.JSON(apiError.Status, apiError)
 		return
 	}
 
-	if createAccessTokenErr := atHandler.accessTokenService.CreateAccessToken(accessToken); createAccessTokenErr != nil {
+	accessToken, createAccessTokenErr := atHandler.accessTokenService.CreateAccessToken(accessTokenRequest)
+	if createAccessTokenErr != nil {
 		c.JSON(createAccessTokenErr.Status, createAccessTokenErr)
 		return
 	}

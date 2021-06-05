@@ -23,7 +23,7 @@ func TestGetNewAccessToken(t *testing.T) {
 	// Init
 
 	// Execution
-	at := GetNewAccessToken()
+	at := GetNewAccessToken(0)
 
 	// Validation
 	assert.NotNil(t, at)
@@ -50,6 +50,25 @@ func TestIsAccessTokenExpired(t *testing.T) {
 	at.Expires = time.Now().UTC().Add(3 * time.Hour).Unix()
 
 	assert.EqualValues(t, at.IsAccessTokenExpired(), false)
+
+	// Teardown
+}
+
+func TestGenerateAccessToken(t *testing.T) {
+	// Init
+
+	// Execution
+	at := AccessToken{
+		UserID: 0,
+	}
+	at.GenerateAccessToken()
+
+	// Validation
+	assert.NotNil(t, at)
+	assert.NotNil(t, at.Expires)
+	assert.NotEmpty(t, at.AccessToken)
+	assert.EqualValues(t, at.UserID, 0)
+	assert.EqualValues(t, at.ClientID, 0)
 
 	// Teardown
 }

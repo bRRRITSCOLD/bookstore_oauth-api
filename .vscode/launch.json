@@ -16,6 +16,19 @@
         "USERS_MYSQL_DB_HOST": "127.0.0.1",
         "USERS_MYSQL_DB_DATABASE": "test"
       }
+    },
+    {
+      "name": "Launch main.go",
+      "type": "go",
+      "request": "launch",
+      "mode": "debug",
+      "program": "main.go",
+      "env": {
+        "USERS_MYSQL_DB_USERNAME": "test_user",
+        "USERS_MYSQL_DB_PASSWORD": "123abc",
+        "USERS_MYSQL_DB_HOST": "127.0.0.1",
+        "USERS_MYSQL_DB_DATABASE": "test"
+      }
     }
   ]
 }

@@ -1,7 +1,9 @@
 package access_token_domain
 
 import (
+	crypto_utils "bookstore_oauth-api/utils/crypto"
 	errors_utils "bookstore_oauth-api/utils/errors"
+	"fmt"
 	"strings"
 	"time"
 )
@@ -38,8 +40,9 @@ func (at *AccessToken) ValidateAccessToken() *errors_utils.APIError {
 	return nil
 }
 
-func GetNewAccessToken() AccessToken {
+func GetNewAccessToken(userId int64) AccessToken {
 	return AccessToken{
+		UserID:  userId,
 		Expires: time.Now().UTC().Add(EXPIRATION_TIME * time.Hour).Unix(),
 	}
 }
@@ -49,4 +52,8 @@ func (at AccessToken) IsAccessTokenExpired() bool {
 	expirationTime := time.Unix(at.Expires, 0)
 
 	return expirationTime.Before(now)
+}
+
+func (at *AccessToken) GenerateAccessToken() {
+	at.AccessToken = crypto_utils.MD5Hash(fmt.Sprintf("at-%d-%d-ran", at.UserID, at.Expires))
 }
