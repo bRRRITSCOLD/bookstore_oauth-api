@@ -4,6 +4,7 @@ import (
 	cassandra_client "bookstore_oauth-api/clients/cassandra"
 	access_token_http_infrastructure "bookstore_oauth-api/infrastructure/http/access_token"
 	access_token_database_repository "bookstore_oauth-api/repositories/database/access_token"
+	users_http_repository "bookstore_oauth-api/repositories/http/users"
 	access_token_service "bookstore_oauth-api/services/access_token"
 
 	"github.com/gin-gonic/gin"
@@ -20,12 +21,17 @@ func StartApp() {
 	}
 	cassandraClientSession.Close()
 
-	atRepository := access_token_database_repository.NewAccessTokenRepository()
-	atService := access_token_service.NewService(atRepository)
+	// repos
+	atDbRepository := access_token_database_repository.NewAccessTokenRepository()
+	uHttpRepository := users_http_repository.NewUsersHTTPRepository()
+
+	// services
+	atService := access_token_service.NewService(atDbRepository, uHttpRepository)
+
+	// handlers
 	atHttpInfrastructureHandler := access_token_http_infrastructure.NewHandler(atService)
 
-	// ping
-	// ping
+	// routes
 	router.POST("/oauth/access-token", atHttpInfrastructureHandler.CreateAccessToken)
 	router.GET("/oauth/access-token/:accessTokenId", atHttpInfrastructureHandler.GetAccessTokenByID)
 	// router.PUT("/oauth/access-token/:accessTokenId", atHttpInfrastructureHandler.GetAccessTokenByID)
