@@ -3,10 +3,11 @@ package users_http_repository
 import (
 	http_client "bookstore_oauth-api/clients/http"
 	users_domain "bookstore_oauth-api/domains/users"
-	errors_utils "bookstore_oauth-api/utils/errors"
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	errors_utils "github.com/bRRRITSCOLD/bookstore_utils-go/errors"
 )
 
 const (

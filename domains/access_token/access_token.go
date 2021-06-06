@@ -1,11 +1,12 @@
 package access_token_domain
 
 import (
-	crypto_utils "bookstore_oauth-api/utils/crypto"
-	errors_utils "bookstore_oauth-api/utils/errors"
 	"fmt"
 	"strings"
 	"time"
+
+	crypto_utils "github.com/bRRRITSCOLD/bookstore_utils-go/crypto"
+	errors_utils "github.com/bRRRITSCOLD/bookstore_utils-go/errors"
 )
 
 const (

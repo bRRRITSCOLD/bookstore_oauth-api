@@ -3,7 +3,8 @@ package access_token_database_repository
 import (
 	cassandra_client "bookstore_oauth-api/clients/cassandra"
 	access_token_domain "bookstore_oauth-api/domains/access_token"
-	errors_utils "bookstore_oauth-api/utils/errors"
+
+	errors_utils "github.com/bRRRITSCOLD/bookstore_utils-go/errors"
 )
 
 const (

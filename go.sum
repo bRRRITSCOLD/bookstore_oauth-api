@@ -1,3 +1,7 @@
+github.com/bRRRITSCOLD/bookstore_oauth-go v0.0.0-20210606163912-b25149652f86 h1:s1KHAIkM5+N9Ab5mjFYhQBv1M5KpYHWf2+sxHXliAi4=
+github.com/bRRRITSCOLD/bookstore_oauth-go v0.0.0-20210606163912-b25149652f86/go.mod h1:GT0ci2JAoUuJedpI612QvJxo1gSmv2DbXoMxSS2KUUk=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210606223908-1670bfe27a08 h1:JNX0AInEmDhHHG4LlxZHcMYv5PeYFIIBDvsdmx97BJM=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210606223908-1670bfe27a08/go.mod h1:LnQeTPCZgeZVuab0VdeQ6neWNmUmvnEF9YzuMKHlNmI=
 github.com/bitly/go-hostpool v0.0.0-20171023180738-a3a6125de932/go.mod h1:NOuUCSz6Q9T7+igc/hlvDOUdtWKryOrtFyIVABv/p7k=
 github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869/go.mod h1:Ekp36dRnpXw/yCqJaO+ZrUyxD+3VXMFFr56k5XYrpB4=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
@@ -19,6 +23,8 @@ github.com/go-playground/validator/v10 v10.4.1 h1:pH2c5ADXtd66mxoE0Zm9SUhxE20r7a
 github.com/go-playground/validator/v10 v10.4.1/go.mod h1:nlOn6nFhuKACm19sB/8EGNn9GlaMV7XkbRSipzJ0Ii4=
 github.com/go-resty/resty/v2 v2.6.0 h1:joIR5PNLM2EFqqESUjCMGXrWmXNHEU9CEiK813oKYS4=
 github.com/go-resty/resty/v2 v2.6.0/go.mod h1:PwvJS6hvaPkjtjNg9ph+VrSD92bi5Zq73w/BIH7cC3Q=
+github.com/go-sql-driver/mysql v1.6.0 h1:BCTh4TKNUYmOmMUcQ3IipzF5prigylS7XXjEkfCHuOE=
+github.com/go-sql-driver/mysql v1.6.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LBy8hT2VhHyBg=
 github.com/gocql/gocql v0.0.0-20200131111108-92af2e088537/go.mod h1:DL0ekTmBSTdlNF25Orwt/JMzqIq3EJ4MVa/J/uK64OY=
 github.com/gocql/gocql v0.0.0-20210515062232-b7ef815b4556 h1:N/MD/sr6o61X+iZBAT2qEUF023s4KbA8RWfKzl0L6MQ=
 github.com/gocql/gocql v0.0.0-20210515062232-b7ef815b4556/go.mod h1:DL0ekTmBSTdlNF25Orwt/JMzqIq3EJ4MVa/J/uK64OY=

@@ -5,8 +5,10 @@ import (
 	users_domain "bookstore_oauth-api/domains/users"
 	access_token_database_repository "bookstore_oauth-api/repositories/database/access_token"
 	users_http_repository "bookstore_oauth-api/repositories/http/users"
-	errors_utils "bookstore_oauth-api/utils/errors"
+	"errors"
 	"strings"
+
+	errors_utils "github.com/bRRRITSCOLD/bookstore_utils-go/errors"
 )
 
 type AccessTokenService interface {
@@ -33,7 +35,7 @@ func NewService(
 func (atService *accessTokenService) GetAccessTokenByID(accessTokenId string) (*access_token_domain.AccessToken, *errors_utils.APIError) {
 	accessTokenId = strings.TrimSpace(accessTokenId)
 	if len(accessTokenId) == 0 {
-		return nil, errors_utils.NewBadRequestAPIError("invalid access token id")
+		return nil, errors_utils.NewBadRequestAPIError("invalid access token id", errors.New("validation error"))
 	}
 
 	accessToken, err := atService.accessTokenDatabaseRepository.GetAccessTokenByID(accessTokenId)
