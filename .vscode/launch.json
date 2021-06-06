@@ -10,25 +10,17 @@
       "request": "launch",
       "mode": "debug",
       "program": "${file}",
-      "env": {
-        "USERS_MYSQL_DB_USERNAME": "test_user",
-        "USERS_MYSQL_DB_PASSWORD": "123abc",
-        "USERS_MYSQL_DB_HOST": "127.0.0.1",
-        "USERS_MYSQL_DB_DATABASE": "test"
-      }
+      "port": 3000,
+      "host": "127.0.0.1",
     },
     {
-      "name": "Launch main.go",
+       "name": "Launch main.go",
       "type": "go",
       "request": "launch",
       "mode": "debug",
-      "program": "main.go",
-      "env": {
-        "USERS_MYSQL_DB_USERNAME": "test_user",
-        "USERS_MYSQL_DB_PASSWORD": "123abc",
-        "USERS_MYSQL_DB_HOST": "127.0.0.1",
-        "USERS_MYSQL_DB_DATABASE": "test"
-      }
+      "program": "${workspaceRoot}/main.go",
+      "port": 3000,
+      "host": "127.0.0.1",
     }
   ]
 }

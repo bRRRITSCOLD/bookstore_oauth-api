@@ -32,11 +32,11 @@ func StartApp() {
 	atHttpInfrastructureHandler := access_token_http_infrastructure.NewHandler(atService)
 
 	// routes
-	router.POST("/oauth/access-token", atHttpInfrastructureHandler.CreateAccessToken)
-	router.GET("/oauth/access-token/:accessTokenId", atHttpInfrastructureHandler.GetAccessTokenByID)
+	router.POST("/oauth/access_token", atHttpInfrastructureHandler.CreateAccessToken)
+	router.GET("/oauth/access_token/:accessTokenId", atHttpInfrastructureHandler.GetAccessTokenByID)
 	// router.PUT("/oauth/access-token/:accessTokenId", atHttpInfrastructureHandler.GetAccessTokenByID)
 
-	if err := router.Run(":8080"); err != nil {
+	if err := router.Run(":3000"); err != nil {
 		panic(err)
 	}
 }
