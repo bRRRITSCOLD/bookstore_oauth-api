@@ -8,7 +8,8 @@ import (
 
 	access_token_domain "bookstore_oauth-api/domains/access_token"
 	access_token_service "bookstore_oauth-api/services/access_token"
-	errors_utils "bookstore_oauth-api/utils/errors"
+
+	errors_utils "github.com/bRRRITSCOLD/bookstore_utils-go/errors"
 )
 
 type AccessTokenHandler interface {
