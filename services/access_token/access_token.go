@@ -12,9 +12,9 @@ import (
 )
 
 type AccessTokenService interface {
-	GetAccessTokenByID(string) (*access_token_domain.AccessToken, *errors_utils.APIError)
-	CreateAccessToken(access_token_domain.AccessTokenRequest) (*access_token_domain.AccessToken, *errors_utils.APIError)
-	UpdateAccessTokenExpiresByID(access_token_domain.AccessToken) *errors_utils.APIError
+	GetAccessTokenByID(string) (*access_token_domain.AccessToken, errors_utils.APIError)
+	CreateAccessToken(access_token_domain.AccessTokenRequest) (*access_token_domain.AccessToken, errors_utils.APIError)
+	UpdateAccessTokenExpiresByID(access_token_domain.AccessToken) errors_utils.APIError
 }
 
 type accessTokenService struct {
@@ -32,7 +32,7 @@ func NewService(
 	}
 }
 
-func (atService *accessTokenService) GetAccessTokenByID(accessTokenId string) (*access_token_domain.AccessToken, *errors_utils.APIError) {
+func (atService *accessTokenService) GetAccessTokenByID(accessTokenId string) (*access_token_domain.AccessToken, errors_utils.APIError) {
 	accessTokenId = strings.TrimSpace(accessTokenId)
 	if len(accessTokenId) == 0 {
 		return nil, errors_utils.NewBadRequestAPIError("invalid access token id", errors.New("validation error"))
@@ -46,7 +46,7 @@ func (atService *accessTokenService) GetAccessTokenByID(accessTokenId string) (*
 	return accessToken, nil
 }
 
-func (atService *accessTokenService) CreateAccessToken(accessTokenRequest access_token_domain.AccessTokenRequest) (*access_token_domain.AccessToken, *errors_utils.APIError) {
+func (atService *accessTokenService) CreateAccessToken(accessTokenRequest access_token_domain.AccessTokenRequest) (*access_token_domain.AccessToken, errors_utils.APIError) {
 	validateAccessTokenRequestErr := accessTokenRequest.ValidateAccessTokenRequest()
 	if validateAccessTokenRequestErr != nil {
 		return nil, validateAccessTokenRequestErr
@@ -74,7 +74,7 @@ func (atService *accessTokenService) CreateAccessToken(accessTokenRequest access
 	return &accessToken, nil
 }
 
-func (atService *accessTokenService) UpdateAccessTokenExpiresByID(accessToken access_token_domain.AccessToken) *errors_utils.APIError {
+func (atService *accessTokenService) UpdateAccessTokenExpiresByID(accessToken access_token_domain.AccessToken) errors_utils.APIError {
 	validateAccessTokenErr := accessToken.ValidateAccessToken()
 	if validateAccessTokenErr != nil {
 		return validateAccessTokenErr
