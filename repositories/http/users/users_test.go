@@ -61,8 +61,8 @@ func TestLoginHttpClientError(t *testing.T) {
 	// validation
 	assert.Nil(t, user)
 	assert.NotNil(t, err)
-	assert.EqualValues(t, http.StatusInternalServerError, err.Status)
-	assert.EqualValues(t, "Unable to login user test@test.com", err.Message)
+	assert.EqualValues(t, http.StatusInternalServerError, err.Status())
+	assert.EqualValues(t, "Unable to login user test@test.com", err.Message())
 }
 
 func TestLoginInvalidError(t *testing.T) {
@@ -82,8 +82,8 @@ func TestLoginInvalidError(t *testing.T) {
 	// validation
 	assert.Nil(t, user)
 	assert.NotNil(t, err)
-	assert.EqualValues(t, http.StatusInternalServerError, err.Status)
-	assert.EqualValues(t, "invalid error response when logging in user test@test.com", err.Message)
+	assert.EqualValues(t, http.StatusInternalServerError, err.Status())
+	assert.EqualValues(t, "invalid error response when logging in user test@test.com", err.Message())
 }
 
 func TestLoginUserNotFound(t *testing.T) {
@@ -103,8 +103,8 @@ func TestLoginUserNotFound(t *testing.T) {
 	// validation
 	assert.Nil(t, user)
 	assert.NotNil(t, err)
-	assert.EqualValues(t, http.StatusNotFound, err.Status)
-	assert.EqualValues(t, "mysql: no rows found", err.Message)
+	assert.EqualValues(t, http.StatusNotFound, err.Status())
+	assert.EqualValues(t, "mysql: no rows found", err.Message())
 }
 
 func TestLoginUserInvalidResponse(t *testing.T) {
@@ -125,6 +125,6 @@ func TestLoginUserInvalidResponse(t *testing.T) {
 	// validation
 	assert.Nil(t, user)
 	assert.NotNil(t, err)
-	assert.EqualValues(t, http.StatusInternalServerError, err.Status)
-	assert.EqualValues(t, "error when trying to unmarshal user data for user test@test.com", err.Message)
+	assert.EqualValues(t, http.StatusInternalServerError, err.Status())
+	assert.EqualValues(t, "error when trying to unmarshal user data for user test@test.com", err.Message())
 }

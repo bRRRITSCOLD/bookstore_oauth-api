@@ -22,13 +22,13 @@ type AccessTokenRequest struct {
 	ClientSecret string `json:"client_secret"`
 }
 
-func (atr *AccessTokenRequest) ValidateAccessTokenRequest() *errors_utils.APIError {
+func (atr *AccessTokenRequest) ValidateAccessTokenRequest() errors_utils.APIError {
 	switch atr.GrantType {
 	case GRANT_TYPE_CLIENT_CREDENTIALS:
 	case GRANT_TYPE_PASSWORD:
 		break
 	default:
-		return errors_utils.NewBadRequestAPIError("invalid grant_type")
+		return errors_utils.NewBadRequestAPIError("invalid grant_type", nil)
 	}
 
 	// TODO: validate all parameters

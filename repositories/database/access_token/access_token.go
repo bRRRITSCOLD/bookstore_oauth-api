@@ -14,9 +14,9 @@ const (
 )
 
 type AccessTokenDatabaseRepository interface {
-	GetAccessTokenByID(string) (*access_token_domain.AccessToken, *errors_utils.APIError)
-	CreateAccessToken(access_token_domain.AccessToken) *errors_utils.APIError
-	UpdateAccessTokenExpiresByID(access_token_domain.AccessToken) *errors_utils.APIError
+	GetAccessTokenByID(string) (*access_token_domain.AccessToken, errors_utils.APIError)
+	CreateAccessToken(access_token_domain.AccessToken) errors_utils.APIError
+	UpdateAccessTokenExpiresByID(access_token_domain.AccessToken) errors_utils.APIError
 }
 
 type accessTokenDatabaseRepository struct {
@@ -26,47 +26,47 @@ func NewAccessTokenRepository() AccessTokenDatabaseRepository {
 	return &accessTokenDatabaseRepository{}
 }
 
-func (atDbRepo *accessTokenDatabaseRepository) GetAccessTokenByID(id string) (*access_token_domain.AccessToken, *errors_utils.APIError) {
+func (atDbRepo *accessTokenDatabaseRepository) GetAccessTokenByID(id string) (*access_token_domain.AccessToken, errors_utils.APIError) {
 	cassandraClientSession, err := cassandra_client.GetSession()
 	if err != nil {
-		return nil, errors_utils.NewInternalServerAPIError(err.Error())
+		return nil, errors_utils.NewInternalServerAPIError("error getting cassandra session", err)
 	}
 	defer cassandraClientSession.Close()
 
 	var accessToken access_token_domain.AccessToken
 	q := cassandraClientSession.Query(QUERY_GET_ACCESS_TOKEN_BY_ID, []string{"id"}).Bind(id)
 	if q.Iter().NumRows() == 0 {
-		return nil, errors_utils.NewNotFoundAPIError("access token not found")
+		return nil, errors_utils.NewNotFoundAPIError("access token not found", nil)
 	}
 	q.Iter().StructScan(&accessToken)
 	return &accessToken, nil
 }
 
-func (atDbRepo *accessTokenDatabaseRepository) CreateAccessToken(at access_token_domain.AccessToken) *errors_utils.APIError {
+func (atDbRepo *accessTokenDatabaseRepository) CreateAccessToken(at access_token_domain.AccessToken) errors_utils.APIError {
 	cassandraClientSession, err := cassandra_client.GetSession()
 	if err != nil {
-		return errors_utils.NewInternalServerAPIError(err.Error())
+		return errors_utils.NewInternalServerAPIError("error getting cassandra session", err)
 	}
 	defer cassandraClientSession.Close()
 
 	q := cassandraClientSession.Query(QUERY_INSERT_ACCESS_TOKEN, []string{"access_token", "user_id", "client_id", "expires"}).BindStruct(&at)
 	if execReleaseErr := q.ExecRelease(); execReleaseErr != nil {
-		return errors_utils.NewInternalServerAPIError(execReleaseErr.Error())
+		return errors_utils.NewInternalServerAPIError("error executing cassandra query", execReleaseErr)
 	}
 
 	return nil
 }
 
-func (atDbRepo *accessTokenDatabaseRepository) UpdateAccessTokenExpiresByID(at access_token_domain.AccessToken) *errors_utils.APIError {
+func (atDbRepo *accessTokenDatabaseRepository) UpdateAccessTokenExpiresByID(at access_token_domain.AccessToken) errors_utils.APIError {
 	cassandraClientSession, err := cassandra_client.GetSession()
 	if err != nil {
-		return errors_utils.NewInternalServerAPIError(err.Error())
+		return errors_utils.NewInternalServerAPIError("error getting cassandra session", err)
 	}
 	defer cassandraClientSession.Close()
 
 	q := cassandraClientSession.Query(QUERY_UPDATE_ACCESS_TOKEN_EXPIRES_BY_ID, []string{"expires", "accessToken"}).BindStruct(&at.AccessToken)
 	if execReleaseErr := q.ExecRelease(); execReleaseErr != nil {
-		return errors_utils.NewInternalServerAPIError(execReleaseErr.Error())
+		return errors_utils.NewInternalServerAPIError("error executing cassandra query", execReleaseErr)
 	}
 
 	return nil

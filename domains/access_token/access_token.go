@@ -20,22 +20,22 @@ type AccessToken struct {
 	Expires     int64  `json:"expires" cassandra:"expires"`
 }
 
-func (at *AccessToken) ValidateAccessToken() *errors_utils.APIError {
+func (at *AccessToken) ValidateAccessToken() errors_utils.APIError {
 	accessTokenId := strings.TrimSpace(at.AccessToken)
 	if len(accessTokenId) == 0 {
-		return errors_utils.NewBadRequestAPIError("invalid access token id")
+		return errors_utils.NewBadRequestAPIError("invalid access token id", nil)
 	}
 
 	if at.UserID <= 0 {
-		return errors_utils.NewBadRequestAPIError("invalid user id")
+		return errors_utils.NewBadRequestAPIError("invalid user id", nil)
 	}
 
 	if at.ClientID <= 0 {
-		return errors_utils.NewBadRequestAPIError("invalid client id")
+		return errors_utils.NewBadRequestAPIError("invalid client id", nil)
 	}
 
 	if at.Expires <= 0 {
-		return errors_utils.NewBadRequestAPIError("invalid expiration time")
+		return errors_utils.NewBadRequestAPIError("invalid expiration time", nil)
 	}
 
 	return nil
