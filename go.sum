@@ -4,6 +4,12 @@ github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210606223908-1670bfe27a08 h1:
 github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210606223908-1670bfe27a08/go.mod h1:LnQeTPCZgeZVuab0VdeQ6neWNmUmvnEF9YzuMKHlNmI=
 github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210611191653-3ba0942fcd68 h1:ABtsx1AAJaX/dNiWpQdVJ8ofxSQS/qN5MY1vT7lvybg=
 github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210611191653-3ba0942fcd68/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210612121045-ca5bbfaf1651 h1:lOxcxy/Y6lz4YkXuewNqSTeBYdMW8otZdpTdPyduAwQ=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210612121045-ca5bbfaf1651/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210612173429-dab0f11d65fc h1:yCaITpyGx5fXNoIxMGJ56d3iueEsOXJ7mVCCKniX+0Y=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210612173429-dab0f11d65fc/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210612180122-3727f9c5a952 h1:owDtBcACl2cu/Y5kYC+quGOnWl5Z2AEmNP/t9rHV8tI=
+github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210612180122-3727f9c5a952/go.mod h1:570txi494oGJSXwRRFK++uL/32aVB6oHqHw172yz6pw=
 github.com/bitly/go-hostpool v0.0.0-20171023180738-a3a6125de932/go.mod h1:NOuUCSz6Q9T7+igc/hlvDOUdtWKryOrtFyIVABv/p7k=
 github.com/bmizerany/assert v0.0.0-20160611221934-b7ed37b82869/go.mod h1:Ekp36dRnpXw/yCqJaO+ZrUyxD+3VXMFFr56k5XYrpB4=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=

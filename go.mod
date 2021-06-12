@@ -3,7 +3,7 @@ module bookstore_oauth-api
 go 1.16
 
 require (
-	github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210611191653-3ba0942fcd68 // indirect
+	github.com/bRRRITSCOLD/bookstore_utils-go v0.0.0-20210612180122-3727f9c5a952 // indirect
 	github.com/gin-gonic/gin v1.7.2 // indirect
 	github.com/go-resty/resty/v2 v2.6.0
 	github.com/gocql/gocql v0.0.0-20210515062232-b7ef815b4556 // indirect
